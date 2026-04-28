@@ -8,7 +8,9 @@ const isDigit = (char) => /^\d$/.test(char);
 async function startServer() {
   http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
-  if (req.url == "/")
+  urlObj = url.parse(req.url,true)
+  path = urlObj.pathname;
+  if (path)
     {
       s = '<div id="display">' +
           '<form id="myForm" action="/process" method="post">' +
@@ -18,7 +20,7 @@ async function startServer() {
       '</div>';
       res.write(s);
     }
-  else if (req.url == "/process") {
+  else if (path == "/process") {
     try {
         var body = '';
         req.on('data', chunk => { body += chunk.toString(); });

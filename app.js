@@ -4,16 +4,16 @@ require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8"]);
 const MongoClient = require('mongodb').MongoClient;
 // const readline = require('node:readline');
 
-const url = "mongodb+srv://ljgaither99_db_user:WyuA6p3uQv88YLfP@hw10.0ibs88j.mongodb.net/?appName=hw10";
+const mongourl = "mongodb+srv://ljgaither99_db_user:WyuA6p3uQv88YLfP@hw10.0ibs88j.mongodb.net/?appName=hw10";
 
 const isDigit = (char) => /^\d$/.test(char);
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8080;
 
 async function startServer() {
   http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
-  urlObj = url.parse(req.url,true)
+  urlObj = mongourl.parse(req.url,true)
   path = urlObj.pathname;
   if (path)
     {

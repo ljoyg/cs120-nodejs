@@ -8,7 +8,7 @@ const mongourl = "mongodb+srv://ljgaither99_db_user:WyuA6p3uQv88YLfP@hw10.0ibs88
 
 const isDigit = (char) => /^\d$/.test(char);
 
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 3000;
 
 async function startServer() {
   http.createServer(function (req, res) {

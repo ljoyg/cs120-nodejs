@@ -4,6 +4,7 @@ const readline = require('node:readline');
 const url = "mongodb+srv://ljgaither99_db_user:WyuA6p3uQv88YLfP@hw10.0ibs88j.mongodb.net/?appName=hw10";
 
 const isDigit = (char) => /^\d$/.test(char);
+var port = process.env.PORT || 3000;
 
 async function startServer() {
   http.createServer(function (req, res) {
@@ -43,5 +44,5 @@ async function startServer() {
     }
   }
   res.end();
-}).listen(3000);
+}).listen(port);
 }

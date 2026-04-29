@@ -29,7 +29,7 @@ async function launchServer() {
         req.on('data', chunk => { body += chunk.toString();  });
         req.on('end', () => 
             { 
-            res.write ("Raw data string: " + body +"<br/>");
+            // res.write ("Raw data string: " + body +"<br/>");
             var search = qs.parse(body).answer;
             async function searchDB(search) {
                 console.log("connecting...");

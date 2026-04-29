@@ -41,10 +41,12 @@ async function launchServer() {
                     console.log(search);
                     if (isDigit(search[0])) {
                         const results = await collection.find({ zips: search });
+                        console.log(results);
                         res.write(results);
                         res.write("yay");
                     } else {
                         const results = await collection.find({ place: search });
+                        console.log(results);
                         res.write(results);
                         res.write("yoo");
                     };

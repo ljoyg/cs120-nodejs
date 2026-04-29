@@ -40,12 +40,12 @@ async function launchServer() {
                     const isDigit = (char) => /^\d$/.test(char);
                     console.log(search);
                     if (isDigit(search[0])) {
-                        const results = await collection.find({ zips: search }, { _id: 0, title: 1, author: 1 },);
+                        const results = await collection.findOne({ zips: search }, { _id: 0, title: 1, author: 1 });
                         console.log(results);
                         res.write(results);
                         res.write("yay");
                     } else {
-                        const results = await collection.find({ place: search }, { _id: 0, title: 1, author: 1 });
+                        const results = await collection.findOne({ place: search }, { _id: 0, title: 1, author: 1 });
                         console.log(results);
                         res.write(results);
                         res.write("yoo");

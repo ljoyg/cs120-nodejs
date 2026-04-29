@@ -8,6 +8,8 @@ const MongoClient = require('mongodb').MongoClient;
 
 const mongourl = "mongodb+srv://ljgaither99_db_user:WyuA6p3uQv88YLfP@hw10.0ibs88j.mongodb.net/?appName=hw10";
 
+const client = new MongoClient(mongourl);
+
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
   urlObj = url.parse(req.url,true)
@@ -34,26 +36,20 @@ http.createServer(function (req, res) {
                 var dbo = db.db("hw10");
                 var collection = dbo.collection('places');
                 if(err) { console.log(err); }
-                else {
-                    if (isDigit(search[0])) {
-                        const results = await collection.find({ zips: val });
-                    } else {
-                        const results = await collection.find({ place: val })
-                    };
-                    res.write(results);
-                };
+                // else {
+                //     if (isDigit(search[0])) {
+                //         const results = await collection.find({ zips: val });
+                //     } else {
+                //         const results = await collection.find({ place: val })
+                //     };
+                //     res.write(results);
+                // };
             });
         } finally {
             db.close();
+            res.end();
         }
-
-
-	// var id = qs.parse(body).id;      // assumes x is post data parameter	
-    //     res.write ("The id is " + id );
-	// res.write ("<br/>The name is " + qs.parse(body).name );
-
-        res.end();
-        });
+    });
   }
 }).listen(port);
 

@@ -1,24 +1,22 @@
 var http = require('http');
 const { start } = require('node:repl');
-var url = require('url');
-require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8"]);
-const MongoClient = require('mongodb').MongoClient;
+// var url = require('url');
+// require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8", "0.0.0.0"]);
+// const MongoClient = require('mongodb').MongoClient;
 // const readline = require('node:readline');
 
-const mongourl = "mongodb+srv://ljgaither99_db_user:WyuA6p3uQv88YLfP@hw10.0ibs88j.mongodb.net/?appName=hw10";
+// const mongourl = "mongodb+srv://ljgaither99_db_user:WyuA6p3uQv88YLfP@hw10.0ibs88j.mongodb.net/?appName=hw10";
 
 const isDigit = (char) => /^\d$/.test(char);
 
-var port = process.env.PORT || 8080;
-
-startServer();
+var port = process.env.PORT || 3000;
 
 async function startServer() {
     console.log("i'm trying my best");
-  http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  urlObj = mongourl.parse(req.url,true);
-  path = urlObj.pathname;
+    http.createServer(function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    urlObj = mongourl.parse(req.url,true);
+    path = urlObj.pathname;
 //   if (path == "/")
 //     {
       s = '<div id="display">' +
@@ -54,3 +52,6 @@ async function startServer() {
   res.end();
 }).listen(port);
 }
+
+startServer();
+

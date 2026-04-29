@@ -10,7 +10,7 @@ const mongourl = "mongodb+srv://ljgaither99_db_user:WyuA6p3uQv88YLfP@hw10.0ibs88
 
 const client = new MongoClient(mongourl);
 
-http.createServer(function (req, res) {
+http.createServer(async function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
   urlObj = url.parse(req.url,true)
   path = urlObj.pathname;

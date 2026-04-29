@@ -1,0 +1,6 @@
+<h2>Form created from File</h2>
+<form action='/process' method='post'>
+User Id: <input type='text' name='id'><br />
+Name: <input type='text' name='name'><br />
+<input type='submit'>
+</form>

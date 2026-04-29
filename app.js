@@ -40,10 +40,13 @@ http.createServer(function (req, res) {
                 else {
                     if (isDigit(search[0])) {
                         const results = await collection.find({ zips: search });
+                        res.write(results);
+                        res.write("yay");
                     } else {
-                        const results = await collection.find({ place: search })
+                        const results = await collection.find({ place: search });
+                        res.write(results);
+                        res.write("yoo");
                     };
-                    res.write(results);
                 };
                 console.log("connected");
             } finally {

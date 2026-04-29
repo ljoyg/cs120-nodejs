@@ -42,13 +42,11 @@ async function launchServer() {
                     if (isDigit(search[0])) {
                         const results = await collection.findOne({ zips: search }, { _id: 0, title: 1, author: 1 });
                         console.log(results);
-                        res.write(results);
-                        res.write("yay");
+                        res.write("City: " + results.place + "; Zips: " + results.zips);
                     } else {
                         const results = await collection.findOne({ place: search }, { _id: 0, title: 1, author: 1 });
                         console.log(results);
-                        res.write(results);
-                        res.write("yoo");
+                        res.write("City: " + results.place + "; Zips: " + results.zips);
                     };
                     console.log("connected");
                 } finally {

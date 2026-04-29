@@ -35,7 +35,7 @@ async function launchServer() {
                 console.log("connecting...");
                 try {
                     await client.connect();
-                    var dbo = db.db("hw10");
+                    var dbo = client.db("hw10");
                     var collection = dbo.collection('places');
                     if(err) { console.log(err); }
                     else {

@@ -1,6 +1,5 @@
-<h2>Form created from File</h2>
+<h2>Leona Gaither HW10</h2>
 <form action='/process' method='post'>
-User Id: <input type='text' name='id'><br />
-Name: <input type='text' name='name'><br />
+Please enter a city or zip: <input type='text' name='answer'><br />
 <input type='submit'>
 </form>

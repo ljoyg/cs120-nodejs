@@ -29,7 +29,8 @@ http.createServer(function (req, res) {
         res.write ("Raw data string: " + body +"<br/>");
         try {
             var search = qs.parse(body).answer;
-            MongoClient.connect(url, async function(err, db) {
+            MongoClient.connect(mongourl, async function(err, db) {
+                console.log("connected");
                 var dbo = db.db("hw10");
                 var collection = dbo.collection('places');
                 if(err) { console.log(err); }

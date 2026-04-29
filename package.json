@@ -4,8 +4,9 @@
   "description": "",
   "license": "ISC",
   "author": "",
-  "type": "commonjs",
-  "main": "node_mongo.js",
+  "type": "git",
+  "main": "app.js",
+  "start": "start app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   }

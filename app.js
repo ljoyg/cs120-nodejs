@@ -37,6 +37,7 @@ async function launchServer() {
                     await client.connect();
                     var dbo = client.db("hw10");
                     var collection = dbo.collection('places');
+                    const isDigit = (char) => /^\d$/.test(char);
                     if (isDigit(search[0])) {
                         const results = await collection.find({ zips: search });
                         res.write(results);

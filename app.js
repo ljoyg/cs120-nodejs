@@ -10,52 +10,56 @@ const mongourl = "mongodb+srv://ljgaither99_db_user:WyuA6p3uQv88YLfP@hw10.0ibs88
 
 const client = new MongoClient(mongourl);
 
-http.createServer(async function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/html'});
-  urlObj = url.parse(req.url,true)
-  path = urlObj.pathname;
-  if (path == "/")
-  {
-    file="homeview.txt";
-    fs.readFile(file, function(err, homeView) {
-    res.write(homeView);
-    res.end();
-    })
-  }
-  else if (path == "/process")
-  {
-    var body = '';
-    req.on('data', chunk => { body += chunk.toString();  });
-    req.on('end', () => 
-        { 
-        res.write ("Raw data string: " + body +"<br/>");
-        var search = qs.parse(body).answer;
-        async function searchDB(search) {
-            console.log("connecting...");
-            try {
-                await client.connect();
-                var dbo = db.db("hw10");
-                var collection = dbo.collection('places');
-                if(err) { console.log(err); }
-                else {
-                    if (isDigit(search[0])) {
-                        const results = await collection.find({ zips: search });
-                        res.write(results);
-                        res.write("yay");
-                    } else {
-                        const results = await collection.find({ place: search });
-                        res.write(results);
-                        res.write("yoo");
+async function launchServer() {
+    http.createServer(async function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    urlObj = url.parse(req.url,true)
+    path = urlObj.pathname;
+    if (path == "/")
+    {
+        file="homeview.txt";
+        fs.readFile(file, function(err, homeView) {
+        res.write(homeView);
+        res.end();
+        })
+    }
+    else if (path == "/process")
+    {
+        var body = '';
+        req.on('data', chunk => { body += chunk.toString();  });
+        req.on('end', () => 
+            { 
+            res.write ("Raw data string: " + body +"<br/>");
+            var search = qs.parse(body).answer;
+            async function searchDB(search) {
+                console.log("connecting...");
+                try {
+                    await client.connect();
+                    var dbo = db.db("hw10");
+                    var collection = dbo.collection('places');
+                    if(err) { console.log(err); }
+                    else {
+                        if (isDigit(search[0])) {
+                            const results = await collection.find({ zips: search });
+                            res.write(results);
+                            res.write("yay");
+                        } else {
+                            const results = await collection.find({ place: search });
+                            res.write(results);
+                            res.write("yoo");
+                        };
                     };
-                };
-                console.log("connected");
-            } finally {
-                await client.close();
-                res.end();
-            }
-        };
-        searchDB(search).catch(console.dir);
-    });
-  }
-}).listen(port);
+                    console.log("connected");
+                } finally {
+                    await client.close();
+                    res.end();
+                }
+            };
+            searchDB(search).catch(console.dir);
+        });
+    }
+    }).listen(port);
+}
+
+launchServer();
 

@@ -4,7 +4,10 @@
   "description": "",
   "license": "ISC",
   "author": "",
-  "type": "git",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
   "main": "app.js",
   "start": "start app.js",
   "scripts": {

@@ -9,7 +9,7 @@
     "url": ""
   },
   "main": "app.js",
-  "start": "start app.js",
+  "start": "node app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   }

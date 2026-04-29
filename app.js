@@ -37,17 +37,14 @@ async function launchServer() {
                     await client.connect();
                     var dbo = client.db("hw10");
                     var collection = dbo.collection('places');
-                    if(err) { console.log(err); }
-                    else {
-                        if (isDigit(search[0])) {
-                            const results = await collection.find({ zips: search });
-                            res.write(results);
-                            res.write("yay");
-                        } else {
-                            const results = await collection.find({ place: search });
-                            res.write(results);
-                            res.write("yoo");
-                        };
+                    if (isDigit(search[0])) {
+                        const results = await collection.find({ zips: search });
+                        res.write(results);
+                        res.write("yay");
+                    } else {
+                        const results = await collection.find({ place: search });
+                        res.write(results);
+                        res.write("yoo");
                     };
                     console.log("connected");
                 } finally {

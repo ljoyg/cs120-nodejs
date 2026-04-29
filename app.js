@@ -47,11 +47,11 @@ http.createServer(function (req, res) {
                 };
                 console.log("connected");
             } finally {
-                db.close();
+                await client.close();
                 res.end();
             }
         };
-        searchDB(search);
+        searchDB(search).catch(console.dir);
     });
   }
 }).listen(port);

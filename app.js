@@ -31,6 +31,7 @@ http.createServer(function (req, res) {
         res.write ("Raw data string: " + body +"<br/>");
         var search = qs.parse(body).answer;
         async function searchDB(search) {
+            console.log("connecting...");
             try {
                 await client.connect();
                 var dbo = db.db("hw10");

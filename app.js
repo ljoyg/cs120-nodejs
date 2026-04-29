@@ -24,9 +24,11 @@ http.createServer(function (req, res) {
     req.on('end', () => 
         { 
         res.write ("Raw data string: " + body +"<br/>");
-	var id = qs.parse(body).id;      // assumes x is post data parameter	
-        res.write ("The id is " + id );
-	res.write ("<br/>The name is " + qs.parse(body).name );
+
+
+	// var id = qs.parse(body).id;      // assumes x is post data parameter	
+    //     res.write ("The id is " + id );
+	// res.write ("<br/>The name is " + qs.parse(body).name );
 
         res.end();
         });

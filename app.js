@@ -52,25 +52,6 @@ http.createServer(function (req, res) {
             }
         };
         searchDB(search);
-        // try {
-        //     MongoClient.connect(mongourl, async function(err, db) {
-        //         console.log("connected");
-        //         var dbo = db.db("hw10");
-        //         var collection = dbo.collection('places');
-        //         if(err) { console.log(err); }
-        //         // else {
-        //         //     if (isDigit(search[0])) {
-        //         //         const results = await collection.find({ zips: search });
-        //         //     } else {
-        //         //         const results = await collection.find({ place: search })
-        //         //     };
-        //         //     res.write(results);
-        //         // };
-        //     });
-        // } finally {
-        //     db.close();
-        //     res.end();
-        // }
     });
   }
 }).listen(port);

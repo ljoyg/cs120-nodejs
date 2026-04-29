@@ -15,8 +15,8 @@ async function startServer() {
     console.log("i'm trying my best");
     http.createServer(function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/html'});
-    urlObj = mongourl.parse(req.url,true);
-    path = urlObj.pathname;
+    // urlObj = mongourl.parse(req.url,true);
+    // path = urlObj.pathname;
 //   if (path == "/")
 //     {
       s = '<div id="display">' +

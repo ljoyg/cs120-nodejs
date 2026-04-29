@@ -1,4 +1,5 @@
 var http = require('http');
+const { start } = require('node:repl');
 var url = require('url');
 require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8"]);
 const MongoClient = require('mongodb').MongoClient;
@@ -9,6 +10,8 @@ const mongourl = "mongodb+srv://ljgaither99_db_user:WyuA6p3uQv88YLfP@hw10.0ibs88
 const isDigit = (char) => /^\d$/.test(char);
 
 var port = process.env.PORT || 8080;
+
+startServer();
 
 async function startServer() {
   http.createServer(function (req, res) {

@@ -3,6 +3,10 @@ var url = require('url');
 var qs = require('querystring');
 var fs = require('fs');
 var port = process.env.PORT || 3000;
+require("node:dns/promises").setServers(["1.1.1.1", "8.8.8.8", "0.0.0.0"]);
+const MongoClient = require('mongodb').MongoClient;
+
+const mongourl = "mongodb+srv://ljgaither99_db_user:WyuA6p3uQv88YLfP@hw10.0ibs88j.mongodb.net/?appName=hw10";
 
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});
@@ -18,12 +22,29 @@ http.createServer(function (req, res) {
   }
   else if (path == "/process")
   {
-	res.write ("Processing<br/>");
     var body = '';
     req.on('data', chunk => { body += chunk.toString();  });
     req.on('end', () => 
         { 
         res.write ("Raw data string: " + body +"<br/>");
+        try {
+            var search = qs.parse(body).answer;
+            MongoClient.connect(url, async function(err, db) {
+                var dbo = db.db("hw10");
+                var collection = dbo.collection('places');
+                if(err) { console.log(err); }
+                else {
+                    if (isDigit(search[0])) {
+                        const results = await collection.find({ zips: val });
+                    } else {
+                        const results = await collection.find({ place: val })
+                    };
+                    res.write(results);
+                };
+            });
+        } finally {
+            db.close();
+        }
 
 
 	// var id = qs.parse(body).id;      // assumes x is post data parameter	
@@ -53,17 +74,8 @@ http.createServer(function (req, res) {
 //     console.log("i'm trying my best");
 //     http.createServer(function (req, res) {
 //     res.writeHead(200, {'Content-Type': 'text/html'});
-//     // urlObj = mongourl.parse(req.url,true);
-//     // path = urlObj.pathname;
 // //   if (path == "/")
 // //     {
-//       s = '<div id="display">' +
-//           '<form id="myForm" action="/process" method="post">' +
-//               '<label>Please enter a zip code or a place: </label><input type="text" id="answer"><br/>' +
-//               '<input type="submit">' +
-//           '</form>' +
-//       '</div>';
-//       res.write(s);
 // //     }
 // //   else if (path == "/process") {
 // //     try {
